@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: joplin-auto-pub
+
+    volumes:
+      - joplin-data:/home/node/.config
+      - ~/.ssh/id_rsa:/home/node/.ssh/id_rsa:ro
+      
+
+    # volumes:
+    #   - .:/app:cached
+    environment:
+      - SYNC_TARGET=9
+      - SYNC_PATH=
+      - SYNC_USERNAME=
+      - SYNC_PASSWORD=
+      - BLOG_REPOSITORY=git@github.com:ytianxia6/blog.git
+  
+volumes:
+  joplin-data:
+
+
