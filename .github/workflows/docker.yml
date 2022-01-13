@@ -23,7 +23,7 @@ jobs:
         with:
           image: ytianxia6/joplin-auto-pub
           registry: docker.io
-          buildArgs: 'SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}'
+          buildArgs: SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           # push: true
