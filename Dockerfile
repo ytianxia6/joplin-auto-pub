@@ -5,7 +5,7 @@ ARG VARIANT="16-bullseye"
 
 FROM node:${VARIANT}
 
-ARG SSH_PRIVATE_KEY
+# ARG SSH_PRIVATE_KEY
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends jq libsecret-1-dev \
@@ -15,7 +15,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN mkdir -p /home/node/.ssh && chown -R node:node /home/node/.ssh
 # COPY joplin /home/node/.ssh/id_rsa
 
-RUN touch /home/node/.ssh/id_rsa &&  echo ${SSH_PRIVATE_KEY} > /home/node/.ssh/id_rsa
+# RUN touch /home/node/.ssh/id_rsa &&  echo ${SSH_PRIVATE_KEY} > /home/node/.ssh/id_rsa
 
 RUN su node -c "touch /home/node/.ssh/known_hosts"
 RUN su node -c "ssh-keyscan github.com >> /home/node/.ssh/known_hosts"
@@ -24,7 +24,7 @@ RUN su node -c "ssh-keyscan github.com >> /home/node/.ssh/known_hosts"
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN su node -c "NPM_CONFIG_PREFIX=~/.joplin-bin cnpm install -g joplin hexo-cli "
 
-RUN rm /home/node/.ssh/id_rsa
+# RUN rm /home/node/.ssh/id_rsa
 
 # FROM node:${VARIANT}
 
@@ -53,13 +53,14 @@ ENV BLOG_REPOSITORY ''
 ENV GIT_USER 'ytianxia6'
 ENV GIT_EMAIL 'ytianxia6@gmail.com'
 
+COPY entrypoint.sh /usr/local/bin
+RUN ln -s /usr/local/bin/entrypoint.sh .
+
 USER node
 WORKDIR /home/node/.config
 
 # RUN su node -c "npm install -g joplin"
 
-COPY entrypoint.sh /usr/local/bin
-RUN ln -s /usr/local/bin/entrypoint.sh .
 
 ENTRYPOINT ["entrypoint.sh" ]
 
