@@ -5,7 +5,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    image: joplin-auto-pub
+    image: ytianxia6/joplin-auto-pub:latest
 
     volumes:
       - joplin-data:/home/node/.config
