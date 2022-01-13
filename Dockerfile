@@ -56,7 +56,7 @@ ENV SYNC_TIME_INTERVAL '5m'
 
 COPY entrypoint.sh /usr/local/bin
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
-RUN ln -s /usr/local/bin/entrypoint.sh .
+# RUN ln -s /usr/local/bin/entrypoint.sh .
 
 USER node
 WORKDIR /home/node/.config
@@ -64,5 +64,5 @@ WORKDIR /home/node/.config
 # RUN su node -c "npm install -g joplin"
 
 
-ENTRYPOINT ["entrypoint.sh" ]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh" ]
 
