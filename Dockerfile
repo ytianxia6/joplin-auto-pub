@@ -55,6 +55,7 @@ ENV GIT_EMAIL 'ytianxia6@gmail.com'
 ENV SYNC_TIME_INTERVAL '5m'
 
 COPY entrypoint.sh /usr/local/bin
+RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
 RUN ln -s /usr/local/bin/entrypoint.sh .
 
 USER node
