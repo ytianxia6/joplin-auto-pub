@@ -84,5 +84,5 @@ do_update() {
 }
 
 echo "同步成功！"
-while true; do do_update; sleep 1m; done
+while true; do do_update; sleep ${SYNC_TIME_INTERVAL}; done
 
