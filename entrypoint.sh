@@ -11,7 +11,7 @@ if [ ! -d /home/node/.config/joplin ]; then
     chown -R node:node /home/node/.config/joplin
 fi
 
-ln -s /run/secrets/id_rsa /home/node/.ssh/id_rsa
+# ln -s /run/secrets/id_rsa /home/node/.ssh/id_rsa
 
 # 初始化
 # 设置同步
