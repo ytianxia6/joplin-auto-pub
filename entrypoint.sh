@@ -11,7 +11,7 @@ if [ ! -d /home/node/.config/joplin ]; then
     chown -R node:node /home/node/.config/joplin
 fi
 
-chown -R node:node /home/node/.ssh/id_rsa
+ln -s /run/secrets/id_rsa /home/node/.ssh/id_rsa
 
 # 初始化
 # 设置同步
@@ -92,6 +92,7 @@ do_update() {
     echo 发布完成
 }
 
-echo "同步成功！"
+echo "同步成功"
+
 while true; do do_update; sleep ${SYNC_TIME_INTERVAL}; done
 
