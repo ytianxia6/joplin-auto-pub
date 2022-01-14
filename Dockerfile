@@ -58,7 +58,7 @@ COPY entrypoint.sh /usr/local/bin
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
 # RUN ln -s /usr/local/bin/entrypoint.sh .
 
-USER node
+# USER node
 WORKDIR /home/node/.config
 
 # RUN su node -c "npm install -g joplin"
