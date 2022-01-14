@@ -68,31 +68,30 @@ fi
 
 
 # 启动服务
-echo 启动服务
+echo start service
 su node -c "joplin server start &"
 
 do_update() {
-    echo 开始同步
+    echo begin sync
     su node -c "joplin sync"
-    echo 同步完成
+    echo end sync
 
-    echo 开始更新blog
+    echo begin update blog
     su node -c "yarn gen"
-    echo 更新完成
+    echo complete update
 
-    echo 开始上传到github
+    echo push github
     su node -c "git add ."
-    su node -c "git commit -m "自动发布 $(date)"
+    su node -c "git commit -m \"commit $(date)\""
     su node -c "git push origin main"
-    echo 上传完成
+    echo push github complete
 
-    echo 开始发布
+    echo do publish...
     su node -c "yarn build"
     su node -c "yarn deploy"
-    echo 发布完成
+    echo complete publish
 }
 
-echo "同步成功"
 
 while true; do do_update; sleep ${SYNC_TIME_INTERVAL}; done
 
