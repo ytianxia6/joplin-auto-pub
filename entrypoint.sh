@@ -11,6 +11,8 @@ if [ ! -d /home/node/.config/joplin ]; then
     chown -R node:node /home/node/.config/joplin
 fi
 
+chown -R node:node /home/node/.ssh/id_rsa
+
 # 初始化
 # 设置同步
 su node -c "joplin config sync.target ${SYNC_TARGET}"
