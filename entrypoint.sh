@@ -5,6 +5,8 @@ function get_joplin_token(){
     api_token=$(cat /home/node/.config/joplin/settings.json | jq -r '."api.token"')
 }
 
+ls -l /home/node/.ssh
+
 # 准备目录
 if [ ! -d /home/node/.config/joplin ]; then
     mkdir -p /home/node/.config/joplin
