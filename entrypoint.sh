@@ -83,6 +83,10 @@ echo start service
 su node -c "joplin server start &"
 
 do_update() {
+
+    su node -c "git pull"
+
+
     echo begin sync
     su node -c "joplin sync"
     echo end sync
