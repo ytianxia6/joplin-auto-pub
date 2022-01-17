@@ -71,7 +71,7 @@ if [ ! -f '.joplin-blog.json' ]; then
     echo '  "joplinProfilePath": "/home/node/.config/joplin",' >> '.joplin-blog.json'
     echo '  "token": "'$api_token'",' >> '.joplin-blog.json'
     echo '  "port": 41184,' >> '.joplin-blog.json'
-    echo '  "tag": "blog"' >> '.joplin-blog.json'
+    echo '  "tag": "'${BLOG_TAG}'"' >> '.joplin-blog.json'
     echo '}' >> '.joplin-blog.json'
     echo '' >> '.joplin-blog.json'
 fi

@@ -53,6 +53,7 @@ ENV BLOG_REPOSITORY ''
 ENV GIT_USER 'ytianxia6'
 ENV GIT_EMAIL 'ytianxia6@gmail.com'
 ENV SYNC_TIME_INTERVAL '5m'
+ENV BLOG_TAG 'blog'
 
 COPY entrypoint.sh /usr/local/bin
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
