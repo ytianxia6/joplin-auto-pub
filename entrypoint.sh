@@ -8,10 +8,13 @@ function get_joplin_token(){
 if [ ! -f /home/node/.ssh/id_rsa ]; then
     cp /root/.ssh/id_rsa /home/node/.ssh/id_rsa
     chown -R node:node /home/node/.ssh/id_rsa
+    chmod 400 /home/node/.ssh/id_rsa
     cat << EOF >> /home/node/.ssh/config
         User node
 EOF
 fi
+
+chown -R node:node /home/node/.config
 
 # 准备目录
 if [ ! -d /home/node/.config/joplin ]; then
