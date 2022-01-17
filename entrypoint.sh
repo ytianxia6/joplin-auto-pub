@@ -39,7 +39,7 @@ su node -c "git config --global user.email ${GIT_EMAIL}"
 # 初始化blog
 if [ ! -d "blog" ]; then
     
-    git clone ${BLOG_REPOSITORY} /home/node/.config/blog
+    su node -c "git clone ${BLOG_REPOSITORY} /home/node/.config/blog"
     chown -R node:node /home/node/.config/blog
 
 fi
