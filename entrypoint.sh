@@ -5,7 +5,13 @@ function get_joplin_token(){
     api_token=$(cat /home/node/.config/joplin/settings.json | jq -r '."api.token"')
 }
 
-ls -l /home/node/.ssh
+if [ ! -d /home/node/.ssh/id_rsa ]; then
+    cp /root/.ssh/id_rsa /home/node/.ssh/id_rsa
+    chown -R node:node /home/node/.ssh/id_rsa
+    cat <<EOF >> /home/node/.ssh/config
+        User node
+    EOF
+fi
 
 # 准备目录
 if [ ! -d /home/node/.config/joplin ]; then
