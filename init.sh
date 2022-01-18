@@ -51,7 +51,7 @@ if [ ! -f '.joplin-blog.json' ]; then
     get_joplin_token
     echo 'token:'$api_token
 
-    su node -c "touch '.joplin-blog.json'"
+    touch '.joplin-blog.json'
 
     echo '{' >> '.joplin-blog.json'
     echo '  "type": "hexo", ' >> '.joplin-blog.json'
@@ -106,20 +106,23 @@ do_update() {
         cursor=$new_cursor
 
         echo 生成博客...
-        su node -c "yarn gen"
+        yarn gen
         echo 生成完成
 
         echo 发布到仓库...
-        su node -c "git add ."
-        su node -c "git commit -m \"commit $(date)\""
-        su node -c "git push origin main"
+        git add .
+        git commit -m \"commit $(date)\"
+        git push origin main
         echo 发布完成
     else
         echo 笔记没有更新，跳过笔记同步
     fi
 
     echo 发布到hexo
-    su node -c "yarn build"
-    su node -c "yarn deploy"
+    yarn build
+    yarn deploy
     echo 发布完成
 }
+
+while true; do do_update; sleep ${SYNC_TIME_INTERVAL}; done
+
