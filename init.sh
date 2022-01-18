@@ -9,7 +9,7 @@ function get_joplin_token(){
 cursor=-1
 get_cursor(){
     url="http://localhost:41184/events?token=$api_token"
-    ret = curl $url | jq '.cursor'
+    ret=$(curl $url | jq '.cursor')
     echo $ret
 }
 
@@ -102,7 +102,7 @@ do_update() {
 
     new_cursor=$(get_cursor)
     echo "current cursor: $new_cursor"
-    if [ $new_cursor -gt $cursor  ]; then
+    if [[ $new_cursor -gt $cursor  ]]; then
         cursor=$new_cursor
 
         echo 生成博客...
