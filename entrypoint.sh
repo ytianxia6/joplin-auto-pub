@@ -127,4 +127,4 @@ fi
 
 # while true; do do_update; sleep ${SYNC_TIME_INTERVAL}; done
 
-su node -c "./init.sh"
+su node -c "init.sh"
