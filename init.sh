@@ -10,7 +10,7 @@ cursor=-1
 get_cursor(){
     url="http://localhost:41184/events?token=$api_token"
     ret = curl $url | jq '.cursor'
-    echo ret
+    echo $ret
 }
 
 
