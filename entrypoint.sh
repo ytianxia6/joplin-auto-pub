@@ -76,6 +76,16 @@ if [ ! -f '.joplin-blog.json' ]; then
     echo '' >> '.joplin-blog.json'
 fi
 
+# cursor
+cursor=-1
+
+get_cursor(){
+    url="http://localhost:41184/events?token=$api_token"
+    ret = curl $url | jq '.cursor'
+    echo ret
+}
+
+
 
 
 # 启动服务
@@ -86,10 +96,17 @@ do_update() {
 
     su node -c "git pull"
 
+    new_cursor=$(get_cursor)
+    if [ $new_cursor -gt $cursor  ]; then
+        new_cursor=$cursor
+        echo begin sync
+        su node -c "joplin sync"
+        echo end sync
+    else
+        echo 笔记没有更新，跳过笔记同步
+    fi
 
-    echo begin sync
-    su node -c "joplin sync"
-    echo end sync
+
 
     echo begin update blog
     su node -c "yarn gen"
