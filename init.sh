@@ -94,6 +94,7 @@ joplin server start &
 
 do_update() {
 
+    git reset --hard
     git pull
 
     echo 开始同步joplin...
