@@ -12,7 +12,7 @@ get_cursor(){
     get_joplin_token
     url="http://localhost:41184/events?token=$api_token"
     echo curl $url
-    new_cursor=$(curl $url | jq '.cursor')
+    new_cursor=$(curl $url | jq '.cursor' | tr -d '"')
 }
 
 
