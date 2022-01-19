@@ -105,6 +105,7 @@ fi
 #         su node -c "joplin sync"
 #         echo end sync
 
+
 #         echo begin update blog
 #         su node -c "yarn gen"
 #         echo complete update
