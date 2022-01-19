@@ -8,7 +8,9 @@ function get_joplin_token(){
 
 cursor=-1
 get_cursor(){
+    get_joplin_token
     url="http://localhost:41184/events?token=$api_token"
+    echo curl $url
     ret=$(curl $url | jq '.cursor')
     echo $ret
 }
