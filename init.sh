@@ -44,12 +44,11 @@ cnpm install -D md5 moment request xml-parser
 cnpm install -S hexo-generator-sitemap
 cnpm install
 
+get_joplin_token
+echo 'token:'$api_token
 
 # 初始化 .joplin-blog.json
 if [ ! -f '.joplin-blog.json' ]; then
-
-    get_joplin_token
-    echo 'token:'$api_token
 
     touch '.joplin-blog.json'
 
@@ -65,26 +64,6 @@ if [ ! -f '.joplin-blog.json' ]; then
     echo '' >> '.joplin-blog.json'
 fi
 
-
-# 初始化 .joplin-blog.json
-if [ ! -f '.joplin-blog.json' ]; then
-
-    get_joplin_token
-    echo 'token:'$api_token
-
-    touch '.joplin-blog.json'
-
-    echo '{' >> '.joplin-blog.json'
-    echo '  "type": "hexo", ' >> '.joplin-blog.json'
-    echo '  "language": "en",' >> '.joplin-blog.json'
-    echo '  "rootPath": ".",' >> '.joplin-blog.json'
-    echo '  "joplinProfilePath": "/home/node/.config/joplin",' >> '.joplin-blog.json'
-    echo '  "token": "'$api_token'",' >> '.joplin-blog.json'
-    echo '  "port": 41184,' >> '.joplin-blog.json'
-    echo '  "tag": "'${BLOG_TAG}'"' >> '.joplin-blog.json'
-    echo '}' >> '.joplin-blog.json'
-    echo '' >> '.joplin-blog.json'
-fi
 
 # 启动服务
 echo start service
