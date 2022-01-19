@@ -71,7 +71,8 @@ fi
 echo start service
 joplin server start &
 
-
+# 等待服务端启动
+sleep 5s
 
 do_update() {
 
