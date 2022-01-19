@@ -7,12 +7,12 @@ function get_joplin_token(){
 }
 
 cursor=-1
+new_cursor=-1
 get_cursor(){
     get_joplin_token
     url="http://localhost:41184/events?token=$api_token"
     echo curl $url
-    ret=$(curl $url | jq '.cursor')
-    echo $ret
+    new_cursor=$(curl $url | jq '.cursor')
 }
 
 
@@ -82,7 +82,7 @@ do_update() {
     joplin sync
     echo 同步完成
 
-    new_cursor=$(get_cursor)
+    get_cursor
     echo "current cursor: $new_cursor"
     if [[ $new_cursor -gt $cursor  ]]; then
         cursor=$new_cursor
