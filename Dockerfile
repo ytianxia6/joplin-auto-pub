@@ -54,9 +54,12 @@ ENV GIT_USER 'ytianxia6'
 ENV GIT_EMAIL 'ytianxia6@gmail.com'
 ENV SYNC_TIME_INTERVAL '5m'
 ENV BLOG_TAG 'blog'
+ENV GITHUB_TOKEN ''
 
 COPY entrypoint.sh /usr/local/bin
+COPY init.sh /usr/local/bin
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
+RUN ["chmod", "+x", "/usr/local/bin/init.sh"]
 # RUN ln -s /usr/local/bin/entrypoint.sh .
 
 # USER node
